@@ -5,7 +5,7 @@ app = Flask(__name__)
 @app.route("/")
 def index():
     """Returns a simple Hello, World! string."""
-    return "Hello, World!"
+    return "Hello, Big World!"
 
 # Define a dynamic route that accepts a name in the URL
 @app.route("/greet/<name>")
