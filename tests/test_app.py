@@ -14,7 +14,7 @@ def test_index_route():
     # Assert that the HTTP status code is 200 (OK)
     assert response.status_code == 200
     # Assert that the response data is the expected string
-    assert response.data == b"Hello, World!"
+    assert response.data == b"Hello, Big World!"
 def test_greet_route():
     """Tests the "/greet/<name>" route with a sample name."""
     client = app.test_client()
