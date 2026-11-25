@@ -7,6 +7,8 @@ on:
 # Define the single job for building and pushing the image
 jobs:
 
+
+
   build-and-push:
     runs-on: ubuntu-latest
     # Grant permissions for the job to write to the container registry
@@ -26,12 +28,16 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
 
+      - name: Convert repository owner to lowercase
+        run: echo "REPO_OWNER_LC=${GITHUB_REPOSITORY_OWNER,,}" >> $GITHUB_ENV
+
        # Step 3: Build and push the Docker image
       - name: Build and push Docker image
-        uses: docker/build-push-action@v5
+        uses: docker/build-push-action@v6
         with:
           context: .
           push: true
           tags: |
-            ghcr.io/${{ github.repository_owner }}/my_flask_app:latest
-            ghcr.io/${{ github.repository_owner }}/my_flask_app:${{ github.sha }}
+            ghcr.io/${{ env.REPO_OWNER_LC }}/my_flask_app:latest
+            ghcr.io/${{ env.REPO_OWNER_LC }}/my_flask_app:${{ github.sha }}
+
